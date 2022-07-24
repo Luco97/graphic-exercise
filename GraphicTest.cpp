@@ -30,7 +30,12 @@ int main(int argc, char** argv)
 
     BubbleSort(points);
 
-    std::vector<std::vector<int>> bestDots = WrapperDotsAlgorithm(points);
+    std::vector<std::vector<int>> bestDotsTop = WrapperDotsAlgorithm(points);
+
+    BubbleSortReverse(points);
+
+    std::vector<std::vector<int>> bestDotsBot = WrapperDotsAlgorithm(points);
+
 
     if (SDL_Init(SDL_INIT_VIDEO) == 0) {
         SDL_Window* window = NULL;
@@ -51,11 +56,15 @@ int main(int argc, char** argv)
                     SDL_RenderDrawPoint(renderer, points[i][0], points[i][1]);
                 }
 
-                for (int i = 1; i < bestDots.size(); i++)
+                for (int i = 1; i < bestDotsTop.size(); i++)
                 {
-                    SDL_RenderDrawLine(renderer, bestDots[i  -1][0], bestDots[i - 1][1], bestDots[i][0], bestDots[i][1]);
+                    SDL_RenderDrawLine(renderer, bestDotsTop[i  -1][0], bestDotsTop[i - 1][1], bestDotsTop[i][0], bestDotsTop[i][1]);
                 }
-                SDL_RenderDrawLine(renderer, bestDots[bestDots.size()-1][0], bestDots[bestDots.size() - 1][1], bestDots[0][0], bestDots[0][1]);
+                for (int i = 1; i < bestDotsBot.size(); i++)
+                {
+                    SDL_RenderDrawLine(renderer, bestDotsBot[i - 1][0], bestDotsBot[i - 1][1], bestDotsBot[i][0], bestDotsBot[i][1]);
+                }
+                //SDL_RenderDrawLine(renderer, bestDots[bestDots.size()-1][0], bestDots[bestDots.size() - 1][1], bestDots[0][0], bestDots[0][1]);
             
                 SDL_RenderPresent(renderer);
 
