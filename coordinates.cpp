@@ -1,5 +1,9 @@
 #include "coordinates.h"
 
+coordinates::coordinates() {
+	setValues(0, 0);
+}
+
 coordinates::coordinates(double x, double y) {
 	setValues(x, y);
 }
