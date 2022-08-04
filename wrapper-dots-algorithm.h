@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include "crossPoint2D.h"
+#include "producto-vectorial-2D.h"
 
 std::vector<std::vector<int>> WrapperDotsAlgorithm(std::vector<std::vector<int>> dots) {
     std::vector<std::vector<int>> borderPoints;
@@ -16,7 +16,7 @@ std::vector<std::vector<int>> WrapperDotsAlgorithm(std::vector<std::vector<int>>
         for (int j = 1; j < dots.size() - 1; j++)
         {
             actualPoint = dots[j];
-            if (crossPoint2D(basePoint[0], basePoint[1], actualPoint[0], actualPoint[1], basePoint[0], basePoint[1], bestPoint[0], bestPoint[1]) > 0 && i != j) {
+            if (productoVectorial2D(basePoint[0], basePoint[1], actualPoint[0], actualPoint[1], basePoint[0], basePoint[1], bestPoint[0], bestPoint[1]) > 0 && i != j) {
                 bestPoint = actualPoint;
             }
         }
